@@ -1,20 +1,50 @@
-//your code here
+int numParticles = 50;
+Particle[] particlesArr = new Particle[numParticles];
+
 void setup()
 {
-	//your code here
+  size(500, 500);
+  for(int i = 0; i < particlesArr.length; i++){
+    particlesArr[i] = new Particle();
+  }
+  particlesArr[0] = new OddballParticle();
 }
 void draw()
 {
-	//your code here
+  background(0);
+  for(int i = 0; i < particlesArr.length; i++){
+    particlesArr[i].move();
+    particlesArr[i].show();
+  }
 }
 class Particle
 {
-	//your code here
+  double x, y, speed, angle;
+  int particleColor;
+  int size = 10;
+  Particle(){
+    x = y = 250;
+    speed = 5;
+    angle = (Math.random() * 2) * (Math.PI);
+    particleColor = color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));
+  }
+  void move(){
+    x += Math.cos(angle);
+    y += Math.sin(angle);
+  }
+  void show(){
+    fill(particleColor);
+    ellipse((float)x, (float)y, size, size);
+  }
 }
 
-class OddballParticle //inherits from Particle
+class OddballParticle extends Particle//inherits from Particle
 {
-	//your code here
+  OddballParticle(){
+    size = 30;
+  }
+  void show(){
+    ellipse((float)x, (float)y, size, size);
+  }
 }
-
 
