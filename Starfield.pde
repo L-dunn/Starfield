@@ -4,6 +4,7 @@ float rot = 0;
 
 void setup()
 {
+  background(0);
   size(800, 800);
   frameRate(100);
   for(int i = 0; i < particlesArr.length; i++){
