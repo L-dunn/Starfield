@@ -1,11 +1,11 @@
-int numParticles = (int)(Math.random() * 51) + 50;
+int numParticles = (int)(Math.random() * 21) + 10;
 Particle[] particlesArr = new Particle[numParticles];
 float rot = 0;
 
 void setup()
 {
-  size(500, 500);
-  frameRate(60);
+  size(800, 800);
+  frameRate(100);
   for(int i = 0; i < particlesArr.length; i++){
     particlesArr[i] = new Particle();
   }
@@ -14,16 +14,15 @@ void setup()
       particlesArr[j] = new OddballParticle();
     }
   }
-  //translate(mouseX, mouseY);
 }
 void draw()
 {
   fill(0, 15);
-  rect(0, 0, 500, 500);
-  translate(mouseX, mouseY);
+  rect(0, 0, width, height);
+  translate(width/2, height/2);
   for(int i = 0; i < particlesArr.length; i++){
     rotate(rot);
-    rot += 0.01;
+    rot += 0.1;
     particlesArr[i].move();
     particlesArr[i].show();
   }
@@ -32,11 +31,11 @@ class Particle
 {
   double x, y, speed, angle;
   int particleColor;
-  int size = 5;
+  int size = 10;
   Particle(){
-    x = mouseX;
-    y = mouseY;
-    speed = (Math.random() * 2) + 1;
+    x = 0;
+    y = 0;
+    speed = (Math.random() * 2) + 1.5;
     angle = (Math.random() * 2) * (Math.PI);
     particleColor = color((int)(Math.random() * 256), (int)(Math.random() * 256), (int)(Math.random() * 256));
   }
@@ -55,6 +54,7 @@ class OddballParticle extends Particle//inherits from Particle
 {
   OddballParticle(){
     size = (int)(Math.random() * 21) + 20;
+    speed = speed - 0.5;
   }
 }
 
@@ -68,6 +68,5 @@ void mousePressed(){
       particlesArr[j] = new OddballParticle();
     }
   }
-  //translate(mouseX, mouseY);
   redraw();
 }
