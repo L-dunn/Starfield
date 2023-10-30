@@ -10,7 +10,7 @@ void setup()
   for(int i = 0; i < particlesArr.length; i++){
     particlesArr[i] = new Particle();
   }
-  for(int j = 0; j < (int)(Math.random() * 21) + 2; j++){
+  for(int j = 0; j < numParticles; j++){
     if(j % 2 == 0){
       particlesArr[j] = new OddballParticle();
     }
@@ -55,7 +55,7 @@ class OddballParticle extends Particle//inherits from Particle
 {
   OddballParticle(){
     size = (int)(Math.random() * 21) + 20;
-    speed = speed - 0.5;
+    speed = -0.9 * (speed - 0.5);
   }
 }
 
@@ -64,7 +64,7 @@ void mousePressed(){
   for(int i = 0; i < particlesArr.length; i++){
     particlesArr[i] = new Particle();
   }
-  for(int j = 0; j < (int)(Math.random() * 21) + 2; j++){
+  for(int j = 0; j < numParticles; j++){
     if(j % 2 == 0){
       particlesArr[j] = new OddballParticle();
     }
